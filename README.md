@@ -1,50 +1,46 @@
-# Welcome to your Expo app 👋
+# Claude Interface - Expo App 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a refined [Expo](https://expo.dev) project featuring a custom **Claude-inspired aesthetic** for a warm, minimalist user experience.
 
-## Get started
+## ✨ Features
 
-1. Install dependencies
+- **Custom Claude Theme**: A warm, reading-focused palette with a cream background and soft peach accents.
+- **Enhanced UI Components**: Cards and surfaces designed for optimal readability.
+- **Cross-Platform**: Optimized for iOS, Android, and Web using Expo Router.
+
+## 🚀 Get Started
+
+1. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. **Start the app**
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. **Open the project**
+   - Press **`w`** to open in web.
+   - Press **`r`** to reload the app.
+   - Use the [Expo Go](https://expo.dev/go) app to scan the QR code on your mobile device.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠 Project Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **`app/`**: File-based routing (using Expo Router).
+- **`components/`**: Reusable UI components including `ThemedView` and `ThemedText`.
+- **`constants/theme.ts`**: The source of truth for the Claude-inspired color palette.
 
-## Get a fresh project
+## 🧹 Fresh Start
 
-When you're ready, run:
+To reset the project to a blank state while preserving the structure:
 
 ```bash
 npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Built with [Expo](https://expo.dev) and inspired by Claude's design language.
