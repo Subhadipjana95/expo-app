@@ -1,112 +1,260 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { IconSymbol } from "@/components/ui/icon-symbol";
+import { Colors } from "@/constants/theme";
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import React from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Fonts } from '@/constants/theme';
+export default function StatisticsScreen() {
+  const colorScheme = useColorScheme() ?? "light";
+  const colors = Colors[colorScheme];
 
-export default function TabTwoScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
-          Explore
-        </ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <ScrollView
+      style={[styles.container, { backgroundColor: colors.background }]}
+    >
+      <View style={styles.header}>
+        <View style={styles.profileRow}>
+          <View style={styles.avatar}>
+            <IconSymbol name="person.fill" size={24} color={colors.icon} />
+          </View>
+          <View>
+            <Text style={[styles.greeting, { color: colors.text }]}>
+              👋 Bogdan!
+            </Text>
+            <Text style={[styles.subGreeting, { color: colors.icon }]}>
+              You have 18 updates
+            </Text>
+          </View>
+        </View>
+        <View style={styles.headerIcons}>
+          <View style={styles.iconBadge}>
+            <IconSymbol name="waveform" size={20} color="white" />
+          </View>
+          <View style={styles.iconBadge}>
+            <IconSymbol name="bell" size={20} color="white" />
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.mapContainer}>
+        {/* Placeholder for dots map */}
+        <View style={styles.mapHeader}>
+          <View style={styles.countryBadge}>
+            <Text style={styles.flag}>🇺🇦</Text>
+            <Text style={styles.countryName}>Ukraine</Text>
+          </View>
+        </View>
+        <View style={styles.dotsContainer}>
+          {Array.from({ length: 48 }).map((_, i) => (
+            <View
+              key={i}
+              style={[
+                styles.dot,
+                {
+                  backgroundColor:
+                    i % 7 === 0
+                      ? colors.yellow
+                      : i % 5 === 0
+                        ? colors.accent
+                        : colors.border,
+                },
+              ]}
+            />
+          ))}
+        </View>
+      </View>
+
+      <View style={styles.statsContainer}>
+        <View style={styles.statsHeader}>
+          <Text style={[styles.statsTitle, { color: colors.text }]}>
+            Parameters
+          </Text>
+          <IconSymbol name="ellipsis" size={20} color={colors.icon} />
+        </View>
+
+        <View style={styles.statItem}>
+          <View>
+            <Text style={[styles.statValue, { color: colors.text }]}>
+              1,250
+            </Text>
+            <Text style={[styles.statLabel, { color: colors.icon }]}>
+              Followers
+            </Text>
+          </View>
+          <View
+            style={[styles.progressBar, { backgroundColor: colors.border }]}
+          >
+            <View
+              style={[
+                styles.progressFill,
+                { width: "70%", backgroundColor: colors.yellow },
+              ]}
+            />
+          </View>
+        </View>
+
+        <View style={styles.statItem}>
+          <View>
+            <Text style={[styles.statValue, { color: colors.text }]}>
+              356,814
+            </Text>
+            <Text style={[styles.statLabel, { color: colors.icon }]}>
+              Likes
+            </Text>
+          </View>
+          <View
+            style={[styles.progressBar, { backgroundColor: colors.border }]}
+          >
+            <View
+              style={[
+                styles.progressFill,
+                { width: "85%", backgroundColor: colors.primary },
+              ]}
+            />
+          </View>
+        </View>
+
+        <View style={styles.statItem}>
+          <View>
+            <Text style={[styles.statValue, { color: colors.text }]}>972</Text>
+            <Text style={[styles.statLabel, { color: colors.icon }]}>
+              Comments
+            </Text>
+          </View>
+          <View
+            style={[styles.progressBar, { backgroundColor: colors.border }]}
+          >
+            <View
+              style={[
+                styles.progressFill,
+                { width: "40%", backgroundColor: colors.green },
+              ]}
+            />
+          </View>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingTop: 60,
+    marginBottom: 30,
+  },
+  profileRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+  },
+  avatar: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: "#FFE3E3",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#eee",
+  },
+  greeting: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  subGreeting: {
+    fontSize: 12,
+  },
+  headerIcons: {
+    flexDirection: "row",
+    gap: 12,
+  },
+  iconBadge: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  mapContainer: {
+    height: 200,
+    paddingHorizontal: 20,
+    marginBottom: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  mapHeader: {
+    position: "absolute",
+    top: 0,
+    right: 40,
+    zIndex: 10,
+  },
+  countryBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#000",
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+    gap: 4,
+  },
+  flag: {
+    fontSize: 12,
+  },
+  countryName: {
+    color: "white",
+    fontSize: 12,
+    fontWeight: "bold",
+  },
+  dotsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
+    justifyContent: "center",
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+  statsContainer: {
+    paddingHorizontal: 20,
+    paddingBottom: 40,
+  },
+  statsHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 24,
+  },
+  statsTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  statItem: {
+    marginBottom: 20,
+  },
+  statValue: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  statLabel: {
+    fontSize: 12,
+    marginBottom: 8,
+  },
+  progressBar: {
+    height: 12,
+    borderRadius: 6,
+    width: "100%",
+    overflow: "hidden",
+  },
+  progressFill: {
+    height: "100%",
+    borderRadius: 6,
   },
 });

@@ -1,128 +1,211 @@
-import { Platform, StyleSheet } from "react-native";
-
-import { HelloWave } from "@/components/hello-wave";
-import ParallaxScrollView from "@/components/parallax-scroll-view";
-import { ThemedText } from "@/components/themed-text";
-import { ThemedView } from "@/components/themed-view";
-import { Link } from "expo-router";
+import { AppButton } from "@/components/ui/app-button";
+import { BarChart } from "@/components/ui/bar-chart";
+import { Card } from "@/components/ui/card";
+import { IconSymbol } from "@/components/ui/icon-symbol";
+import { Colors } from "@/constants/theme";
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import React from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
+  const colorScheme = useColorScheme() ?? "light";
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#f5f2ed", dark: "#2a2a2a" }}
-      headerImage={
-        <ThemedView style={styles.headerContainer}>
-          <ThemedText style={styles.headerTitle}>Subhadip App</ThemedText>
-        </ThemedView>
-      }
+    <ScrollView
+      style={[
+        styles.container,
+        { backgroundColor: Colors[colorScheme].background },
+      ]}
     >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer} type="surface">
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer} type="surface">
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction
-              title="Action"
-              icon="cube"
-              onPress={() => alert("Action pressed")}
+      <View style={styles.header}>
+        <View style={styles.backButton}>
+          <IconSymbol
+            name="chevron.left"
+            size={24}
+            color={Colors[colorScheme].text}
+          />
+        </View>
+        <View style={styles.headerIcons}>
+          <View style={styles.iconBadge}>
+            <IconSymbol name="waveform" size={20} color="white" />
+          </View>
+          <View style={styles.iconBadgeNotification}>
+            <IconSymbol name="bell" size={20} color="white" />
+            <View style={styles.dot} />
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.content}>
+        <Text
+          style={[styles.sectionTitle, { color: Colors[colorScheme].text }]}
+        >
+          Active traffic
+        </Text>
+        <Text style={[styles.mainValue, { color: Colors[colorScheme].text }]}>
+          253k
+        </Text>
+        <Text style={[styles.subText, { color: Colors[colorScheme].icon }]}>
+          Update your tariff plan to get more
+        </Text>
+
+        <View style={styles.actionRow}>
+          <AppButton
+            title="Update Tariff"
+            icon="arrow.up.right"
+            variant="primary"
+          />
+          <View style={styles.growthContainer}>
+            <Text style={styles.growthText}>6%</Text>
+            <IconSymbol
+              name="arrow.up.right"
+              size={14}
+              color={Colors[colorScheme].green}
             />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert("Share pressed")}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert("Delete pressed")}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer} type="surface">
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">
-            npm run reset-project
-          </ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+          </View>
+        </View>
+
+        <Card style={styles.chartCard}>
+          <View style={styles.chartHeader}>
+            <Text
+              style={[styles.chartTitle, { color: Colors[colorScheme].text }]}
+            >
+              Ads View
+            </Text>
+            <View style={styles.timeFilter}>
+              <Text style={styles.filterText}>W</Text>
+              <View style={styles.filterActive}>
+                <Text style={styles.filterTextActive}>M</Text>
+              </View>
+              <Text style={styles.filterText}>Y</Text>
+            </View>
+          </View>
+          <BarChart
+            data={[40, 90, 150, 110, 80]}
+            labels={["24k", "96k", "122k", "108k", "31k"]}
+          />
+        </Card>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    height: 250,
-    width: "100%",
-    alignItems: "center",
+  container: {
+    flex: 1,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingTop: 60,
+    marginBottom: 20,
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "rgba(0,0,0,0.05)",
     justifyContent: "center",
-    backgroundColor: "transparent",
+    alignItems: "center",
   },
-  headerTitle: {
-    fontSize: 42,
-    fontWeight: "800",
-    color: "#d97757",
-    letterSpacing: -1,
+  headerIcons: {
+    flexDirection: "row",
+    gap: 12,
   },
-  titleContainer: {
+  iconBadge: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  iconBadgeNotification: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  dot: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#55EFC4",
+    borderWidth: 2,
+    borderColor: "#000",
+  },
+  content: {
+    paddingHorizontal: 20,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    marginBottom: 4,
+  },
+  mainValue: {
+    fontSize: 80,
+    fontWeight: "bold",
+    letterSpacing: -2,
+  },
+  subText: {
+    fontSize: 14,
+    marginBottom: 20,
+  },
+  actionRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
-    marginTop: 12,
+    justifyContent: "space-between",
+    marginBottom: 30,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 24,
-    padding: 16,
+  growthContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  growthText: {
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+  chartCard: {
+    marginBottom: 100,
+  },
+  chartHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  chartTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  timeFilter: {
+    flexDirection: "row",
+    backgroundColor: "rgba(0,0,0,0.05)",
+    borderRadius: 15,
+    padding: 2,
+    alignItems: "center",
+  },
+  filterText: {
+    paddingHorizontal: 10,
+    fontSize: 12,
+    color: "#636E72",
+  },
+  filterActive: {
+    backgroundColor: "#000",
     borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#e8e6e1",
-    // Shadow for light mode
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
+  filterTextActive: {
+    fontSize: 12,
+    color: "#FFF",
+    fontWeight: "bold",
   },
 });
