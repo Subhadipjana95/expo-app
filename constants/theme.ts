@@ -5,29 +5,41 @@
 
 import { Platform } from "react-native";
 
-const tintColorLight = "#d97757"; // Claude-like orange/peach tint
-const tintColorDark = "#e0a98f";
+const tintColorLight = "#6C5CE7"; // Primary Purple
+const tintColorDark = "#a29bfe";
 
 export const Colors = {
   light: {
-    text: "#222222",
-    background: "#fbfaf8", // Claude cream background
+    text: "#2D3436",
+    background: "#F0F2F5",
     tint: tintColorLight,
-    icon: "#6b6b6b",
-    tabIconDefault: "#6b6b6b",
+    icon: "#636E72",
+    tabIconDefault: "#636E72",
     tabIconSelected: tintColorLight,
-    surface: "#ffffff",
-    border: "#e8e6e1",
+    surface: "#FFFFFF",
+    border: "#DFE6E9",
+    primary: "#6C5CE7",
+    secondary: "#FAB1A0",
+    accent: "#00CEC9",
+    yellow: "#FDCB6E",
+    green: "#55EFC4",
+    purple: "#6C5CE7",
   },
   dark: {
-    text: "#f2f0ed",
-    background: "#1a1a1a", // Darker neutral gray
+    text: "#DFE6E9",
+    background: "#2D3436",
     tint: tintColorDark,
-    icon: "#9ba1a6",
-    tabIconDefault: "#9ba1a6",
+    icon: "#B2BEC3",
+    tabIconDefault: "#B2BEC3",
     tabIconSelected: tintColorDark,
-    surface: "#242424",
-    border: "#333333",
+    surface: "#3a4143",
+    border: "#444444",
+    primary: "#a29bfe",
+    secondary: "#ff7675",
+    accent: "#81ECEC",
+    yellow: "#ffeaa7",
+    green: "#a29bfe",
+    purple: "#a29bfe",
   },
 };
 
