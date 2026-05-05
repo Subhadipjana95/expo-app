@@ -1,12 +1,17 @@
-# Claude Interface - Expo App 👋
+# Dynamic Analytics - Expo Dashboard 📊
 
-This is a refined [Expo](https://expo.dev) project featuring a custom **Claude-inspired aesthetic** for a warm, minimalist user experience.
+This is a high-fidelity [Expo](https://expo.dev) project inspired by modern fintech analytics design. It features a sophisticated purple-themed UI with advanced data visualization and tracking capabilities.
 
 ## ✨ Features
 
-- **Custom Claude Theme**: A warm, reading-focused palette with a cream background and soft peach accents.
-- **Enhanced UI Components**: Cards and surfaces designed for optimal readability.
-- **Cross-Platform**: Optimized for iOS, Android, and Web using Expo Router.
+- **Modern Analytics UI**: A sleek, high-contrast design using deep purples, vibrant yellows, and mint greens.
+- **Three Core Modules**:
+  - **Dashboard**: Real-time traffic monitoring and ad performance tracking.
+  - **Statistics**: User engagement parameters with interactive progress indicators.
+  - **Analytics**: High-level financial snapshots and trend analysis.
+- **Custom Charts**: Reusable Bar Charts, Donut Charts, and Trend Lines built with React Native.
+- **Floating Navigation**: A modern, rounded tab bar with haptic feedback.
+- **Adaptive Dark Mode**: Fully supports system-wide light and dark appearance.
 
 ## 🚀 Get Started
 
@@ -29,18 +34,10 @@ This is a refined [Expo](https://expo.dev) project featuring a custom **Claude-i
 
 ## 🛠 Project Structure
 
-- **`app/`**: File-based routing (using Expo Router).
-- **`components/`**: Reusable UI components including `ThemedView` and `ThemedText`.
-- **`constants/theme.ts`**: The source of truth for the Claude-inspired color palette.
-
-## 🧹 Fresh Start
-
-To reset the project to a blank state while preserving the structure:
-
-```bash
-npm run reset-project
-```
+- **`app/(tabs)/`**: Contains the screen implementations for Home, Stats, and Analytics.
+- **`components/ui/`**: Reusable high-fidelity components like `Card`, `AppButton`, and custom charts.
+- **`constants/theme.ts`**: The source of truth for the project's color palette (Primary Purple: `#6C5CE7`).
 
 ---
 
-Built with [Expo](https://expo.dev) and inspired by Claude's design language.
+Built with [Expo](https://expo.dev) and inspired by high-end fintech design.
